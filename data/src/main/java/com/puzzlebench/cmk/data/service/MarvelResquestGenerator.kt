@@ -35,6 +35,7 @@ class MarvelResquestGenerator {
 
 
     private fun makeMarvelService(okHttpClient: OkHttpClient): MarvelApi {
+
         val retrofit = Retrofit.Builder()
                 .baseUrl(BuildConfig.MARVEL_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
