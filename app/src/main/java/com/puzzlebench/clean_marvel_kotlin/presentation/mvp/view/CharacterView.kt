@@ -1,19 +1,21 @@
-package com.puzzlebench.clean_marvel_kotlin.presentation.mvp
+package com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view
 
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
 import com.puzzlebench.clean_marvel_kotlin.R
-import com.puzzlebench.cmk.domain.model.Character
 import com.puzzlebench.clean_marvel_kotlin.presentation.MainActivity
 import com.puzzlebench.clean_marvel_kotlin.presentation.adapter.CharacterAdapter
 import com.puzzlebench.clean_marvel_kotlin.presentation.extension.showToast
-import kotlinx.android.synthetic.main.activity_main.*
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.CharacterFragment
+import com.puzzlebench.cmk.domain.model.Character
+import kotlinx.android.synthetic.main.activity_main.progressBar
+import kotlinx.android.synthetic.main.activity_main.recycleView
 import java.lang.ref.WeakReference
 
 class CharacterView(activity: MainActivity) {
     private val activityRef = WeakReference(activity)
     private val SPAN_COUNT = 1
-    var adapter = CharacterAdapter { character -> activity.applicationContext.showToast(character.name) }
+    var adapter = CharacterAdapter { character -> showFragmentDialog(character) }
 
     fun init() {
         val activity = activityRef.get()
@@ -22,7 +24,6 @@ class CharacterView(activity: MainActivity) {
             activity.recycleView.adapter = adapter
             showLoading()
         }
-
     }
 
     fun showToastNoItemToShow() {
@@ -48,6 +49,10 @@ class CharacterView(activity: MainActivity) {
 
     fun showLoading() {
         activityRef.get()!!.progressBar.visibility = View.VISIBLE
+    }
 
+    fun showFragmentDialog(character: Character) {
+        val newFragment = CharacterFragment.newInstance(character, activityRef.get()!!)
+        newFragment.init()
     }
 }

@@ -1,6 +1,7 @@
-package com.puzzlebench.clean_marvel_kotlin.presentation.mvp
+package com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter
 
 import com.puzzlebench.clean_marvel_kotlin.presentation.base.Presenter
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharacterView
 import com.puzzlebench.cmk.domain.model.Character
 import com.puzzlebench.cmk.domain.usecase.GetCharacterRepositoryUseCase
 import com.puzzlebench.cmk.domain.usecase.GetCharacterServiceUseCase
@@ -10,10 +11,10 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class CharacterPresenter constructor(view: CharacterView,
-                         private val getCharacterServiceUseCase: GetCharacterServiceUseCase,
-                         private val getCharacterRepositoryUseCase: GetCharacterRepositoryUseCase,
-                         private val saveCharacterRepositoryUseCase: SaveCharacterRepositoryUseCase,
-                         val subscriptions: CompositeDisposable) : Presenter<CharacterView>(view) {
+                                     private val getCharacterServiceUseCase: GetCharacterServiceUseCase,
+                                     private val getCharacterRepositoryUseCase: GetCharacterRepositoryUseCase,
+                                     private val saveCharacterRepositoryUseCase: SaveCharacterRepositoryUseCase,
+                                     val subscriptions: CompositeDisposable) : Presenter<CharacterView>(view) {
 
     lateinit var characters: List<Character>
     fun init() {

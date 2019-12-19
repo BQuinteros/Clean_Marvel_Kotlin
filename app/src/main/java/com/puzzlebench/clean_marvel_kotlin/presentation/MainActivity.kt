@@ -3,8 +3,8 @@ package com.puzzlebench.clean_marvel_kotlin.presentation
 import android.os.Bundle
 import com.puzzlebench.clean_marvel_kotlin.R
 import com.puzzlebench.clean_marvel_kotlin.presentation.base.BaseRxActivity
-import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.CharacterPresenter
-import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.CharacterView
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter.CharacterPresenter
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharacterView
 import com.puzzlebench.cmk.data.mapper.repository.CharacterMapperRepository
 import com.puzzlebench.cmk.data.repository.CharacterDataRepository
 import com.puzzlebench.cmk.data.repository.source.CharacterDataSourceImpl
