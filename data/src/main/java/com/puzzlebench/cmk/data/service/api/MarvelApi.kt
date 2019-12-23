@@ -7,6 +7,6 @@ import io.reactivex.Single
 import retrofit2.http.GET
 
 interface MarvelApi {
-    @GET("/v1/public/characters")
+    @GET("v1/characters")
     fun getCharacter(): Single<MarvelBaseResponse<DataBaseResponse<CharacterResponse>>>
 }
