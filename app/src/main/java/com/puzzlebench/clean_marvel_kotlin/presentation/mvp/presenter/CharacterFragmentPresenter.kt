@@ -23,7 +23,9 @@ class CharacterFragmentPresenter(override val view: CharacterFragmentView, priva
                     } else {
                         view.showFragmentDialog(characterFragment)
                     }
+                    view.hideLoading()
                 }, { e ->
+                    view.hideLoading()
                     view.showToastNetworkError(e.message.toString())
                 })
     }

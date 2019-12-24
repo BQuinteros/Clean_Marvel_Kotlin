@@ -3,5 +3,6 @@
     <string name="message_no_items_to_show">No items to show</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_description">I AM A HERO</string>
+    <string name="image_description">imageOfHero</string>
 </resources>

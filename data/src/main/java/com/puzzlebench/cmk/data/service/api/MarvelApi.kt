@@ -12,6 +12,6 @@ interface MarvelApi {
     @GET("/v1/public/characters")
     fun getCharacter(): Single<MarvelBaseResponse<DataBaseResponse<CharacterResponse>>>
 
-    @GET("v1/characters/{characterId}")
-    fun getSingleCharacter(@Path("characterId") characterId: Int): Single<SingleCharacterResponse>
+    @GET("/v1/public/characters/{characterId}")
+    fun getSingleCharacter(@Path("characterId") characterId: Int): Single<MarvelBaseResponse<DataBaseResponse<SingleCharacterResponse>>>
 }

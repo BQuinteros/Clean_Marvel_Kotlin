@@ -7,6 +7,7 @@ import com.puzzlebench.clean_marvel_kotlin.presentation.MainActivity
 import com.puzzlebench.clean_marvel_kotlin.presentation.adapter.CharacterAdapter
 import com.puzzlebench.clean_marvel_kotlin.presentation.extension.showToast
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.CharacterFragment
+import com.puzzlebench.clean_marvel_kotlin.presentation.util.ONE
 import com.puzzlebench.cmk.domain.model.Character
 import kotlinx.android.synthetic.main.activity_main.progressBar
 import kotlinx.android.synthetic.main.activity_main.recycleView
@@ -14,7 +15,7 @@ import java.lang.ref.WeakReference
 
 class CharacterView(activity: MainActivity) {
     private val activityRef = WeakReference(activity)
-    private val SPAN_COUNT = 1
+    private val SPAN_COUNT = ONE.toInt()
     var adapter = CharacterAdapter { character -> showFragmentDialog(character) }
 
     fun init() {

@@ -1,9 +1,11 @@
 package com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view
 
+import android.view.View
 import com.puzzlebench.clean_marvel_kotlin.R
 import com.puzzlebench.clean_marvel_kotlin.presentation.MainActivity
 import com.puzzlebench.clean_marvel_kotlin.presentation.extension.showToast
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.CharacterFragment
+import kotlinx.android.synthetic.main.activity_main.progressBar
 import java.lang.ref.WeakReference
 
 class CharacterFragmentView(activity: MainActivity) {
@@ -23,5 +25,9 @@ class CharacterFragmentView(activity: MainActivity) {
 
     fun showToastNetworkError(error: String) {
         activityRef.get()?.applicationContext?.showToast(error)
+    }
+
+    fun hideLoading() {
+        activityRef.get()!!.progressBar.visibility = View.GONE
     }
 }

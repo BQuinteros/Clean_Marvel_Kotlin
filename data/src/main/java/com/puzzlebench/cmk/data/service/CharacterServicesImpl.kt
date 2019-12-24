@@ -1,11 +1,11 @@
 package com.puzzlebench.cmk.data.service
 
-import android.util.Log
 import com.puzzlebench.cmk.data.mapper.service.CharacterMapperService
 import com.puzzlebench.cmk.domain.model.Character
 import com.puzzlebench.cmk.domain.model.FullInfoCharacter
 import com.puzzlebench.cmk.domain.service.CharacterServices
 import io.reactivex.Single
+import java.math.BigDecimal.ZERO
 
 
 class CharacterServicesImpl(private val api: MarvelResquestGenerator = MarvelResquestGenerator(), private val mapper: CharacterMapperService = CharacterMapperService()) : CharacterServices {
@@ -16,8 +16,8 @@ class CharacterServicesImpl(private val api: MarvelResquestGenerator = MarvelRes
     }
 
     override fun getSingleCharacter(id: Int): Single<FullInfoCharacter> {
-        Log.i(this.toString(),"AGS")
-        var info = api.makeMarvelService().getSingleCharacter(id).map { res -> mapper.transformToSingleCharacter(res) }
-        return api.makeMarvelService().getSingleCharacter(id).map { res -> mapper.transformToSingleCharacter(res)}
+        return api.makeMarvelService().getSingleCharacter(id).map { response ->
+            response.data?.result?.get(ZERO.toInt())?.let { characterResponse -> mapper.transformToSingleCharacter(characterResponse) }
+        }
     }
 }
