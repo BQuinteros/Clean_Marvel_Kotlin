@@ -36,6 +36,7 @@ class CharacterFragmentView(activity: MainActivity) {
     }
 
     fun hideLoading() {
-        activityRef.get()!!.progressBar.visibility = View.GONE
+        activityRef.get()?.let { it.progressBar.visibility = View.GONE }
+        activityRef.get()?.progressBar?.visibility = View.GONE
     }
 }

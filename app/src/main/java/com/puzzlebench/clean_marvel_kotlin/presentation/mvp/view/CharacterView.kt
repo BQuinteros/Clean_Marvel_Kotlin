@@ -19,10 +19,9 @@ class CharacterView(activity: MainActivity) {
     var adapter = CharacterAdapter { character -> showFragmentDialog(character) }
 
     fun init() {
-        val activity = activityRef.get()
-        activity?.let {
-            activity.recycleView.layoutManager = GridLayoutManager(activity, SPAN_COUNT)
-            activity.recycleView.adapter = adapter
+        activityRef.get()?.let {
+            it.recycleView.layoutManager = GridLayoutManager(it, SPAN_COUNT)
+            it.recycleView.adapter = adapter
             showLoading()
         }
     }
