@@ -9,7 +9,6 @@ import com.puzzlebench.clean_marvel_kotlin.presentation.listener.CharacterListen
 import com.puzzlebench.cmk.domain.model.Character
 import kotlin.properties.Delegates
 
-
 class CharacterAdapter(data: List<Character> = emptyList(), val listener: CharacterListener) : RecyclerView.Adapter<CharactersAdapterViewHolder>() {
 
     var data by Delegates.observable(data) { _, _, _ -> notifyDataSetChanged() }

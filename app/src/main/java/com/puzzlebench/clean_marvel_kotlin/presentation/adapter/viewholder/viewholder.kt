@@ -8,7 +8,6 @@ import com.puzzlebench.cmk.domain.model.Character
 import kotlinx.android.synthetic.main.character_cards_layout.view.image_thumbnail
 import kotlinx.android.synthetic.main.character_cards_layout.view.tv_item
 
-
 class CharactersAdapterViewHolder(view: View, val listener: CharacterListener) : RecyclerView.ViewHolder(view) {
 
     fun bind(item: Character) = with(itemView) {
