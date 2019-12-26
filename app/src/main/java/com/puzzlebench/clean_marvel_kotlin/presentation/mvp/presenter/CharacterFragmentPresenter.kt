@@ -17,11 +17,12 @@ class CharacterFragmentPresenter(override val view: CharacterFragmentView, priva
     private fun requestGetCharacters(characterFragment: CharacterFragment) {
         model.getCharacterServiceUseCase()
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe({ characters ->
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ characters ->
                     if (characters.isEmpty()) {
                         view.showToastNoItemToShow()
                     } else {
-                        view.showFragmentDialog(characterFragment)
+                        view.showFragmentDialog(characterFragment,characters)
                     }
                     view.hideLoading()
                 }, { e ->

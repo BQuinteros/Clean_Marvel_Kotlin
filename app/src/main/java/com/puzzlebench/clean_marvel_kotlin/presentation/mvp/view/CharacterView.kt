@@ -15,12 +15,12 @@ import java.lang.ref.WeakReference
 
 class CharacterView(activity: MainActivity) {
     private val activityRef = WeakReference(activity)
-    private val SPAN_COUNT = ONE.toInt()
+    private val SPAN_COUNT = ONE
     var adapter = CharacterAdapter { character -> showFragmentDialog(character) }
 
     fun init() {
         val activity = activityRef.get()
-        if (activity != null) {
+        activity?.let {
             activity.recycleView.layoutManager = GridLayoutManager(activity, SPAN_COUNT)
             activity.recycleView.adapter = adapter
             showLoading()
@@ -37,11 +37,11 @@ class CharacterView(activity: MainActivity) {
     }
 
     fun showToastNetworkError(error: String) {
-        activityRef.get()!!.applicationContext.showToast(error)
+        activityRef.get()?.applicationContext?.showToast(error)
     }
 
     fun hideLoading() {
-        activityRef.get()!!.progressBar.visibility = View.GONE
+        activityRef.get()?.progressBar?.visibility = View.GONE
     }
 
     fun showCharacters(characters: List<Character>) {
@@ -49,11 +49,11 @@ class CharacterView(activity: MainActivity) {
     }
 
     fun showLoading() {
-        activityRef.get()!!.progressBar.visibility = View.VISIBLE
+        activityRef.get()?.progressBar?.visibility = View.VISIBLE
     }
 
     fun showFragmentDialog(character: Character) {
         val newFragment = CharacterFragment.newInstance(character, activityRef.get()!!)
-        newFragment.init()
+        newFragment.show(activityRef.get()?.fragmentManager, "FRAGMENT_DIALOG")
     }
 }

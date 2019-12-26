@@ -7,7 +7,6 @@ import com.puzzlebench.cmk.domain.service.CharacterServices
 import io.reactivex.Single
 import java.math.BigDecimal.ZERO
 
-
 class CharacterServicesImpl(private val api: MarvelResquestGenerator = MarvelResquestGenerator(), private val mapper: CharacterMapperService = CharacterMapperService()) : CharacterServices {
     override fun getCharacters(): Single<List<Character>> {
         return api.makeMarvelService().getCharacter().map { response ->

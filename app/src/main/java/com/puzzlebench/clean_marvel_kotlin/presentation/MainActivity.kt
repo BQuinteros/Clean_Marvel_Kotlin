@@ -13,7 +13,6 @@ import com.puzzlebench.cmk.domain.usecase.GetCharacterRepositoryUseCase
 import com.puzzlebench.cmk.domain.usecase.GetCharacterServiceUseCase
 import com.puzzlebench.cmk.domain.usecase.SaveCharacterRepositoryUseCase
 
-
 class MainActivity : BaseRxActivity() {
 
     private val getCharacterServiceUseCase = GetCharacterServiceUseCase(CharacterServicesImpl())

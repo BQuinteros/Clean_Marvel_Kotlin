@@ -3,7 +3,7 @@ package com.puzzlebench.cmk.data.model
 import io.realm.RealmObject
 
 open class ComicsRealm (
-        var id: Int? = null,
-        var available: Int? = null,
-        var collectionURI: String? = null
+        var id: Int = DEFAULT_INT,
+        var available: Int = DEFAULT_INT,
+        var collectionURI: String = EMPTY_STRING
 ): RealmObject()

@@ -8,23 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.ImageView
-import android.widget.TextView
 import com.puzzlebench.clean_marvel_kotlin.R
 import com.puzzlebench.clean_marvel_kotlin.presentation.MainActivity
-import com.puzzlebench.clean_marvel_kotlin.presentation.extension.getImageByUrl
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.model.CharacterFragmentModel
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter.CharacterFragmentPresenter
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharacterFragmentView
-import com.puzzlebench.clean_marvel_kotlin.presentation.util.DOT
 import com.puzzlebench.clean_marvel_kotlin.presentation.util.HEIGHT
 import com.puzzlebench.clean_marvel_kotlin.presentation.util.WIDTH
 import com.puzzlebench.cmk.data.service.CharacterServicesImpl
 import com.puzzlebench.cmk.domain.model.Character
 import com.puzzlebench.cmk.domain.usecase.GetSingleCharacterServiceUseCase
 
-
-class CharacterFragment : DialogFragment(){
+class CharacterFragment : DialogFragment() {
 
     private val getSingleCharacterServiceUseCase = GetSingleCharacterServiceUseCase(CharacterServicesImpl(), character.id)
     private val presenter = CharacterFragmentPresenter(CharacterFragmentView(mainActivity), CharacterFragmentModel(getSingleCharacterServiceUseCase))
@@ -37,10 +32,6 @@ class CharacterFragment : DialogFragment(){
             mainActivity = activity
             return CharacterFragment()
         }
-    }
-
-    fun init() {
-        presenter.init(this)
     }
 
     override fun onStart() {
@@ -57,13 +48,11 @@ class CharacterFragment : DialogFragment(){
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_character,container)
-        val textView = view?.findViewById<TextView>(R.id.text_character)
-        val textDescrptionView = view?.findViewById<TextView>(R.id.description_character)
-        val imageView = view?.findViewById<ImageView>(R.id.image_thumbnail)
-        textView?.text = character.name
-        textDescrptionView?.text = character.description
-        imageView?.getImageByUrl("${character.thumbnail.path}$DOT${character.thumbnail.extension}")
-        return view
+        return inflater?.inflate(R.layout.fragment_character, container)
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        presenter.init(this)
+        super.onViewCreated(view, savedInstanceState)
     }
 }
