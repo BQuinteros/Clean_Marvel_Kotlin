@@ -49,9 +49,6 @@ dependencies {
             generalTestDependencies.junit,
             generalTestDependencies.mockitoInline,
             generalTestDependencies.kotlinTest
-    implementation 'com.android.support:cardview-v7:26.1.0'
-
-
 }
 
 android.testOptions.unitTests.all {
