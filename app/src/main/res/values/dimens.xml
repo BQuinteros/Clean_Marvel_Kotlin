@@ -11,4 +11,5 @@
     <dimen name="title_size">20sp</dimen>
     <dimen name="margin_title_description">400dp</dimen>
     <dimen name="progressBar_margin">100dp</dimen>
+    <dimen name="margin_image">5dp</dimen>
 </resources>
