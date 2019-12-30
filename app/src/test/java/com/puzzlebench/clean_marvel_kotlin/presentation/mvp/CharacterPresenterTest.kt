@@ -1,5 +1,7 @@
 package com.puzzlebench.clean_marvel_kotlin.presentation.mvp
 
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter.CharacterPresenter
+import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharacterView
 import com.puzzlebench.cmk.domain.model.Character
 import com.puzzlebench.cmk.domain.repository.CharacterRepository
 import com.puzzlebench.cmk.domain.service.CharacterServices
@@ -57,7 +59,7 @@ class CharacterPresenterTest {
         val observable = Single.just(itemsCharacters)
         Mockito.`when`(getCharacterServiceUseCase.invoke()).thenReturn(observable)
         Mockito.`when`(getCharacterRepositoryUseCase.invoke()).thenReturn(emptyList())
-        characterPresenter.init()
+        characterPresenter.init(this)
         verify(view).init()
         verify(characterServiceImp).getCharacters()
         verify(characterRepository).getAll()
@@ -70,7 +72,7 @@ class CharacterPresenterTest {
     @Ignore
     fun reposeWithError() {
         Mockito.`when`(getCharacterServiceUseCase.invoke()).thenReturn(Single.error(Exception("")))
-        characterPresenter.init()
+        characterPresenter.init(this)
         verify(view).init()
         verify(characterServiceImp).getCharacters()
         verify(view).hideLoading()
@@ -85,7 +87,7 @@ class CharacterPresenterTest {
         }
         val observable = Single.just(itemsCharacters)
         Mockito.`when`(getCharacterServiceUseCase.invoke()).thenReturn(observable)
-        characterPresenter.init()
+        characterPresenter.init(this)
         verify(view).init()
         verify(characterServiceImp).getCharacters()
         verify(view).hideLoading()
@@ -99,7 +101,7 @@ class CharacterPresenterTest {
         val itemsCharacters = emptyList<Character>()
         val observable = Single.just(itemsCharacters)
         Mockito.`when`(getCharacterServiceUseCase.invoke()).thenReturn(observable)
-        characterPresenter.init()
+        characterPresenter.init(this)
         verify(view).init()
         verify(characterServiceImp).getCharacters()
 
