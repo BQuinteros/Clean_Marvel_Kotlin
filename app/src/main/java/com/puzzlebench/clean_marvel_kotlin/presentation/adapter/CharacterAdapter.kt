@@ -21,5 +21,4 @@ class CharacterAdapter(data: List<Character> = emptyList(), val listener: Charac
 
     override fun getItemCount(): Int = data.size
 
-
 }
