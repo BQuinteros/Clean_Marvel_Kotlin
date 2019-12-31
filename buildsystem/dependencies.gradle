@@ -26,10 +26,12 @@ ext {
 
 
     generalDependencies = [
-            rxAndroid : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
-            rxJava    : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            appSupport: 'androidx.appcompat:appcompat:1.0.0',
-            kotlin    : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
+            rxAndroid           : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            rxJava              : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            appCompat           : 'androidx.appcompat:appcompat:1.0.0',
+            kotlin              : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}",
+            rxCardView          : "androidx.cardview:cardview:1.0.0",
+            floatingActionButton: 'com.google.android.material:material:1.0.0'
     ]
 
     generalTestDependencies = [
