@@ -1,7 +1,7 @@
 ext {
     //Android
     androidMinSdkVersion = 15
-    androidTargetSdkVersion = 26
+    androidTargetSdkVersion = 28
     androidCompileSdkVersion = 26
 
     //Genral dependencies version
@@ -28,7 +28,7 @@ ext {
     generalDependencies = [
             rxAndroid : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             rxJava    : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            appSupport: "com.android.support:appcompat-v7:${appSupportVersion}",
+            appSupport: 'androidx.appcompat:appcompat:1.0.0',
             kotlin    : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
     ]
 
@@ -41,8 +41,8 @@ ext {
 
     appDependencies = [
             picasso         : "com.squareup.picasso:picasso:${picassoVersion}",
-            recyclerView    : "com.android.support:recyclerview-v7:${recyclerViewVersion}",
-            constraintLayout: "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}"
+            recyclerView    : 'androidx.recyclerview:recyclerview:1.0.0',
+            constraintLayout: 'androidx.constraintlayout:constraintlayout:1.1.3'
     ]
 
     dataDependencies = [

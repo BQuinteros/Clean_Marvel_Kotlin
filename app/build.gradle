@@ -5,16 +5,22 @@ apply plugin: 'kotlin-android-extensions'
 
 
 android {
+
+    compileOptions {
+        sourceCompatibility = 1.7
+        targetCompatibility = 1.7
+    }
+    buildToolsVersion = '29.0.2'
     def globalConfiguration = rootProject.extensions.getByName("ext")
 
-    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.puzzlebench.clean_marvel_kotlin"
-        minSdkVersion globalConfiguration["androidMinSdkVersion"]
-        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        minSdkVersion 22
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
 
@@ -49,6 +55,7 @@ dependencies {
             generalTestDependencies.junit,
             generalTestDependencies.mockitoInline,
             generalTestDependencies.kotlinTest
+    implementation 'com.google.android.material:material:1.0.0'
 }
 
 android.testOptions.unitTests.all {
