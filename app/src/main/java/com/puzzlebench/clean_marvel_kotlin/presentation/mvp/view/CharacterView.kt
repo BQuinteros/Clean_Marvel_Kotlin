@@ -34,7 +34,6 @@ class CharacterView(activity: MainActivity) {
         if (activity != null) {
             val message = activity.baseContext.resources.getString(R.string.message_no_items_to_show)
             activity.applicationContext.showToast(message)
-
         }
     }
 
@@ -55,9 +54,10 @@ class CharacterView(activity: MainActivity) {
     }
 
     fun showFragmentDialog(character: Character) {
-        activityRef.get()?.let { val newFragment = CharacterFragment.newInstance(character, it)
-            newFragment.show(it.fragmentManager, "FRAGMENT_DIALOG")}
-
+        activityRef.get()?.let {
+            val newFragment = CharacterFragment.newInstance(character, it)
+            newFragment.show(it.fragmentManager, "FRAGMENT_DIALOG")
+        }
     }
 
     fun refreshCharacters(listener: View.OnClickListener) {
@@ -71,5 +71,6 @@ class CharacterView(activity: MainActivity) {
     fun hideRefresh() {
         activityRef.get()?.floatingActionButton?.visibility = GONE
     }
+
 }
 
