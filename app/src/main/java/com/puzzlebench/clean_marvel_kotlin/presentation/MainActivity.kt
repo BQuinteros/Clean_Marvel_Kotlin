@@ -12,6 +12,9 @@ import com.puzzlebench.cmk.data.service.CharacterServicesImpl
 import com.puzzlebench.cmk.domain.usecase.GetCharacterRepositoryUseCase
 import com.puzzlebench.cmk.domain.usecase.GetCharacterServiceUseCase
 import com.puzzlebench.cmk.domain.usecase.SaveCharacterRepositoryUseCase
+import kotlinx.android.synthetic.main.activity_main.floatingActionButton
+import kotlinx.android.synthetic.main.activity_main.secondFloatingActionButton
+import kotlinx.android.synthetic.main.activity_main.thirdFloatingActionButton
 
 class MainActivity : BaseRxActivity() {
 
@@ -28,6 +31,13 @@ class MainActivity : BaseRxActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        listenerButtonClick()
         presenter.init()
+    }
+
+    fun listenerButtonClick() {
+        floatingActionButton.setOnClickListener { presenter.refreshCharacterPresenter() }
+        secondFloatingActionButton.setOnClickListener { presenter.refreshCharactersDataBase() }
+        thirdFloatingActionButton.setOnClickListener { presenter.deleteListofCharacters() }
     }
 }

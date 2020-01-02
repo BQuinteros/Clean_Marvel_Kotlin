@@ -1,6 +1,5 @@
 package com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter
 
-import android.view.View
 import com.puzzlebench.clean_marvel_kotlin.presentation.base.Presenter
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharacterView
 import com.puzzlebench.cmk.domain.model.Character
@@ -27,7 +26,6 @@ class CharacterPresenter constructor(view: CharacterView,
             view.hideLoading()
             view.showCharacters(characters)
         }
-        view.refreshCharacters (View.OnClickListener{ refreshCharacterPresenter() })
     }
 
     private fun requestGetCharacters() {
@@ -39,8 +37,7 @@ class CharacterPresenter constructor(view: CharacterView,
                 view.showCharacters(characters)
             }
             view.hideLoading()
-            view.showRefresh()
-
+            view.showIcon()
         }, { e ->
             view.hideLoading()
             view.showToastNetworkError(e.message.toString())
@@ -49,10 +46,31 @@ class CharacterPresenter constructor(view: CharacterView,
     }
 
     fun refreshCharacterPresenter() {
+        view.showLoading()
         characters = emptyList()
-        view.hideRefresh()
+        view.hideIcon()
         view.showCharacters(characters)
         view.showLoading()
         requestGetCharacters()
+    }
+
+    fun refreshCharactersDataBase() {
+        characters = emptyList()
+        view.showCharacters(characters)
+        view.showLoading()
+        view.hideIcon()
+        view.hideIcon()
+        if (characters.isEmpty()) {
+            characters = getCharacterRepositoryUseCase.invoke()
+            view.showCharacters(characters)
+        }
+        view.hideLoading()
+        view.showIcon()
+        view.showIcon()
+    }
+
+    fun deleteListofCharacters() {
+        characters = emptyList()
+        view.showCharacters(characters)
     }
 }

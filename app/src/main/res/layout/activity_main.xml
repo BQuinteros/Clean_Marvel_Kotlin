@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     tools:context=".presentation.MainActivity">
 
-
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
@@ -29,4 +28,23 @@
         app:fabSize="mini"
         app:srcCompat="@android:drawable/ic_popup_sync" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/secondFloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:clickable="true"
+        app:backgroundTint="@color/black"
+        app:fabSize="mini"
+        app:srcCompat="@drawable/ic_action_storage" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/thirdFloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:clickable="true"
+        app:backgroundTint="@color/black"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/btn_dialog" />
 </FrameLayout>
