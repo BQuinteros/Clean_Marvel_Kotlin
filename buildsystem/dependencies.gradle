@@ -2,7 +2,7 @@ ext {
     //Android
     androidMinSdkVersion = 15
     androidTargetSdkVersion = 29
-    androidCompileSdkVersion = 26
+    androidCompileSdkVersion = 29
 
     //General dependencies version
     appSupportVersion = '26.1.0'

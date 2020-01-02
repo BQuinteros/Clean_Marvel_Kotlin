@@ -14,6 +14,8 @@ import com.puzzlebench.cmk.domain.model.Character
 import kotlinx.android.synthetic.main.activity_main.floatingActionButton
 import kotlinx.android.synthetic.main.activity_main.progressBar
 import kotlinx.android.synthetic.main.activity_main.recycleView
+import kotlinx.android.synthetic.main.activity_main.secondFloatingActionButton
+import kotlinx.android.synthetic.main.activity_main.thirdFloatingActionButton
 import java.lang.ref.WeakReference
 
 class CharacterView(activity: MainActivity) {
@@ -42,7 +44,7 @@ class CharacterView(activity: MainActivity) {
     }
 
     fun hideLoading() {
-        activityRef.get()?.progressBar?.visibility = View.GONE
+        activityRef.get()?.progressBar?.visibility = GONE
     }
 
     fun showCharacters(characters: List<Character>) {
@@ -64,12 +66,24 @@ class CharacterView(activity: MainActivity) {
         activityRef.get()?.floatingActionButton?.setOnClickListener(listener)
     }
 
-    fun showRefresh() {
+    fun showIcon() {
         activityRef.get()?.floatingActionButton?.visibility = VISIBLE
+        activityRef.get()?.secondFloatingActionButton?.visibility = VISIBLE
+        activityRef.get()?.thirdFloatingActionButton?.visibility = VISIBLE
     }
 
-    fun hideRefresh() {
+    fun hideIcon() {
         activityRef.get()?.floatingActionButton?.visibility = GONE
+        activityRef.get()?.secondFloatingActionButton?.visibility = GONE
+        activityRef.get()?.thirdFloatingActionButton?.visibility = GONE
+    }
+
+    fun refreshCharactersDataBase(listener: View.OnClickListener) {
+        activityRef.get()?.secondFloatingActionButton?.setOnClickListener(listener)
+    }
+
+    fun clearScreen(listener: View.OnClickListener) {
+        activityRef.get()?.thirdFloatingActionButton?.setOnClickListener(listener)
     }
 }
 

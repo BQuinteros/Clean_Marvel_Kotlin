@@ -19,6 +19,12 @@ class CharacterPresenter constructor(view: CharacterView,
 
     lateinit var characters: List<Character>
     fun init() {
+        view.clearScreen(View.OnClickListener {
+            characters = emptyList()
+            view.showCharacters(characters)
+        })
+        view.refreshCharactersDataBase(View.OnClickListener { refreshCharactersDataBase() })
+        view.refreshCharacters(View.OnClickListener { refreshCharacterPresenter() })
         view.init()
         characters = getCharacterRepositoryUseCase.invoke()
         if (characters.isEmpty()) {
@@ -27,7 +33,6 @@ class CharacterPresenter constructor(view: CharacterView,
             view.hideLoading()
             view.showCharacters(characters)
         }
-        view.refreshCharacters (View.OnClickListener{ refreshCharacterPresenter() })
     }
 
     private fun requestGetCharacters() {
@@ -39,8 +44,7 @@ class CharacterPresenter constructor(view: CharacterView,
                 view.showCharacters(characters)
             }
             view.hideLoading()
-            view.showRefresh()
-
+            view.showIcon()
         }, { e ->
             view.hideLoading()
             view.showToastNetworkError(e.message.toString())
@@ -49,10 +53,26 @@ class CharacterPresenter constructor(view: CharacterView,
     }
 
     fun refreshCharacterPresenter() {
+        view.showLoading()
         characters = emptyList()
-        view.hideRefresh()
+        view.hideIcon()
         view.showCharacters(characters)
         view.showLoading()
         requestGetCharacters()
+    }
+
+    fun refreshCharactersDataBase() {
+        characters = emptyList()
+        view.showCharacters(characters)
+        view.showLoading()
+        view.hideIcon()
+        view.hideIcon()
+        if (characters.isEmpty()) {
+            characters = getCharacterRepositoryUseCase.invoke()
+            view.showCharacters(characters)
+        }
+        view.hideLoading()
+        view.showIcon()
+        view.showIcon()
     }
 }
