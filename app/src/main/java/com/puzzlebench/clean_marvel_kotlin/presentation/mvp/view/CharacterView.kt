@@ -71,6 +71,5 @@ class CharacterView(activity: MainActivity) {
     fun hideRefresh() {
         activityRef.get()?.floatingActionButton?.visibility = GONE
     }
-
 }
 
