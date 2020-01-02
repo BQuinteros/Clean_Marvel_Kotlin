@@ -1,6 +1,5 @@
 package com.puzzlebench.clean_marvel_kotlin.presentation.mvp.presenter
 
-import android.view.View
 import com.puzzlebench.clean_marvel_kotlin.presentation.base.Presenter
 import com.puzzlebench.clean_marvel_kotlin.presentation.mvp.view.CharacterView
 import com.puzzlebench.cmk.domain.model.Character
@@ -19,12 +18,6 @@ class CharacterPresenter constructor(view: CharacterView,
 
     lateinit var characters: List<Character>
     fun init() {
-        view.clearScreen(View.OnClickListener {
-            characters = emptyList()
-            view.showCharacters(characters)
-        })
-        view.refreshCharactersDataBase(View.OnClickListener { refreshCharactersDataBase() })
-        view.refreshCharacters(View.OnClickListener { refreshCharacterPresenter() })
         view.init()
         characters = getCharacterRepositoryUseCase.invoke()
         if (characters.isEmpty()) {
@@ -74,5 +67,10 @@ class CharacterPresenter constructor(view: CharacterView,
         view.hideLoading()
         view.showIcon()
         view.showIcon()
+    }
+
+    fun deleteListofCharacters() {
+        characters = emptyList()
+        view.showCharacters(characters)
     }
 }

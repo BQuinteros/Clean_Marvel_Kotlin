@@ -77,13 +77,5 @@ class CharacterView(activity: MainActivity) {
         activityRef.get()?.secondFloatingActionButton?.visibility = GONE
         activityRef.get()?.thirdFloatingActionButton?.visibility = GONE
     }
-
-    fun refreshCharactersDataBase(listener: View.OnClickListener) {
-        activityRef.get()?.secondFloatingActionButton?.setOnClickListener(listener)
-    }
-
-    fun clearScreen(listener: View.OnClickListener) {
-        activityRef.get()?.thirdFloatingActionButton?.setOnClickListener(listener)
-    }
 }
 
