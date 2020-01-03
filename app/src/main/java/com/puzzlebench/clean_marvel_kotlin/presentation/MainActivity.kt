@@ -38,6 +38,6 @@ class MainActivity : BaseRxActivity() {
     fun listenerButtonClick() {
         floatingActionButton.setOnClickListener { presenter.refreshCharacterPresenter() }
         secondFloatingActionButton.setOnClickListener { presenter.refreshCharactersDataBase() }
-        thirdFloatingActionButton.setOnClickListener { presenter.deleteListofCharacters() }
+        thirdFloatingActionButton.setOnClickListener { presenter.deleteListOfCharacters() }
     }
 }

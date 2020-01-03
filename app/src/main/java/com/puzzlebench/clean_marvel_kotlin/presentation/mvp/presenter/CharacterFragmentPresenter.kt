@@ -8,7 +8,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class CharacterFragmentPresenter(override val view: CharacterFragmentView, private val model: CharacterFragmentModel)
-    : Presenter<CharacterFragmentView>(view){
+    : Presenter<CharacterFragmentView>(view) {
 
     fun init(characterFragment: CharacterFragment) {
         requestGetCharacters(characterFragment)
@@ -22,7 +22,7 @@ class CharacterFragmentPresenter(override val view: CharacterFragmentView, priva
                     if (characters.isEmpty()) {
                         view.showToastNoItemToShow()
                     } else {
-                        view.showFragmentDialog(characterFragment,characters)
+                        view.showFragmentDialog(characterFragment, characters)
                     }
                     view.hideLoading()
                 }, { e ->

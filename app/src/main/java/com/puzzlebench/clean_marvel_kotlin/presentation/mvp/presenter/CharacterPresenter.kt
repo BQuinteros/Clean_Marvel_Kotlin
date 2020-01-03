@@ -50,7 +50,7 @@ class CharacterPresenter constructor(view: CharacterView,
         characters = emptyList()
         view.hideIcon()
         view.showCharacters(characters)
-        view.showLoading()
+        view.hideLoading()
         requestGetCharacters()
     }
 
@@ -59,17 +59,15 @@ class CharacterPresenter constructor(view: CharacterView,
         view.showCharacters(characters)
         view.showLoading()
         view.hideIcon()
-        view.hideIcon()
-        if (characters.isEmpty()) {
-            characters = getCharacterRepositoryUseCase.invoke()
+        characters = getCharacterRepositoryUseCase.invoke()
+        if (characters.isNotEmpty()) {
             view.showCharacters(characters)
         }
         view.hideLoading()
         view.showIcon()
-        view.showIcon()
     }
 
-    fun deleteListofCharacters() {
+    fun deleteListOfCharacters() {
         characters = emptyList()
         view.showCharacters(characters)
     }
