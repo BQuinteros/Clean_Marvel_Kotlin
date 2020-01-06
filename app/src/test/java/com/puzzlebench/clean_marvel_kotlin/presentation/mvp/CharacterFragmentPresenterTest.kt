@@ -25,8 +25,8 @@ import org.mockito.MockitoAnnotations
 import java.util.concurrent.Executor
 import java.util.concurrent.TimeUnit
 
-const val ZERO_VALUE = 0
-const val TEN_VALUE = 10
+const val INVALID_ID_CHARACTER = 0
+const val VALID_ID_CHARACTER = 10
 const val EMPTY_VALUE = ""
 
 class CharacterFragmentPresenterTest {
@@ -47,7 +47,7 @@ class CharacterFragmentPresenterTest {
         @JvmStatic
         fun setUpClass() {
             val immediate = object : Scheduler() {
-                internal var noDelay = ZERO_VALUE
+                internal var noDelay = INVALID_ID_CHARACTER
 
                 override fun scheduleDirect(run: Runnable, delay: Long, unit: TimeUnit): Disposable {
                     return super.scheduleDirect(run, noDelay.toLong(), unit) // Prevents StackOverflowErrors when scheduling with a delay
@@ -65,7 +65,7 @@ class CharacterFragmentPresenterTest {
             RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler -> immediate }
         }
 
-        private const val SIZE = TEN_VALUE
+        private const val SIZE = VALID_ID_CHARACTER
     }
 
     @Before
@@ -87,7 +87,7 @@ class CharacterFragmentPresenterTest {
 
     @Test
     fun serviceResponseWithItemToShow() {
-        val hero = getHero(TEN_VALUE, TEN_VALUE, EMPTY_VALUE)
+        val hero = getHero(VALID_ID_CHARACTER, VALID_ID_CHARACTER, EMPTY_VALUE)
         val observable = Single.just(hero)
         `when`(getSingleCharacterServiceUseCase.invoke()).thenReturn(observable)
         presenter.init(charactersFragment)
@@ -98,7 +98,7 @@ class CharacterFragmentPresenterTest {
 
     @Test
     fun serviceResponseWithoutItemToShow() {
-        val hero = getHero(ZERO_VALUE, ZERO_VALUE, EMPTY_VALUE)
+        val hero = getHero(INVALID_ID_CHARACTER, INVALID_ID_CHARACTER, EMPTY_VALUE)
         `when`(getSingleCharacterServiceUseCase.invoke()).thenReturn(Single.just(hero))
         presenter.init(charactersFragment)
         verify(getSingleCharacterServiceUseCase).invoke()
@@ -109,6 +109,6 @@ class CharacterFragmentPresenterTest {
     private fun getHero(id: Int, available: Int, collection: String): FullInfoCharacter {
         val comic = Comics(id, available, collection)
         val thumbnail = Thumbnail(EMPTY_VALUE, EMPTY_VALUE)
-        return FullInfoCharacter(id = ZERO_VALUE, comics = comic, thumbnail = thumbnail)
+        return FullInfoCharacter(id = INVALID_ID_CHARACTER, comics = comic, thumbnail = thumbnail)
     }
 }
