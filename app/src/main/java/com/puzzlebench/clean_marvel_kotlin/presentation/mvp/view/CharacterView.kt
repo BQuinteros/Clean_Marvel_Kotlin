@@ -62,10 +62,6 @@ class CharacterView(activity: MainActivity) {
         }
     }
 
-    fun refreshCharacters(listener: View.OnClickListener) {
-        activityRef.get()?.floatingActionButton?.setOnClickListener(listener)
-    }
-
     fun showIcon() {
         activityRef.get()?.floatingActionButton?.visibility = VISIBLE
         activityRef.get()?.secondFloatingActionButton?.visibility = VISIBLE
