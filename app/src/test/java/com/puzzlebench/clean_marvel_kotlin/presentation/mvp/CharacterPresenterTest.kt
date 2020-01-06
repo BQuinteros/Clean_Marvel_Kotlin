@@ -20,6 +20,8 @@ import org.mockito.Mockito.mock
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 
+const val EMPTY_STRING = ""
+
 class CharacterPresenterTest {
 
     private var view = mock(CharacterView::class.java)
@@ -62,12 +64,12 @@ class CharacterPresenterTest {
 
     @Test
     fun reposeWithError() {
-        Mockito.`when`(getCharacterServiceUseCase.invoke()).thenReturn(Single.error(Exception("")))
+        Mockito.`when`(getCharacterServiceUseCase.invoke()).thenReturn(Single.error(Exception(EMPTY_STRING)))
         characterPresenter.init()
         verify(view).init()
         verify(characterServiceImp).getCharacters()
         verify(view).hideLoading()
-        verify(view).showToastNetworkError("")
+        verify(view).showToastNetworkError(EMPTY_STRING)
     }
 
     @Test
@@ -96,7 +98,7 @@ class CharacterPresenterTest {
 
     @Test
     fun refreshCharacterPresenterReposeWithError() {
-        Mockito.`when`(getCharacterServiceUseCase.invoke()).thenReturn(Single.error(Exception("")))
+        Mockito.`when`(getCharacterServiceUseCase.invoke()).thenReturn(Single.error(Exception(EMPTY_STRING)))
         val itemsCharacters = emptyList<Character>()
         characterPresenter.refreshCharacterPresenter()
         verify(view).showLoading()
@@ -104,7 +106,7 @@ class CharacterPresenterTest {
         verify(view).showCharacters(itemsCharacters)
         verify(characterServiceImp).getCharacters()
         verify(view, times(2)).hideLoading()
-        verify(view).showToastNetworkError("")
+        verify(view).showToastNetworkError(EMPTY_STRING)
     }
 
     @Test

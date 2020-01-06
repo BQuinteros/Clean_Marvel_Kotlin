@@ -87,9 +87,7 @@ class CharacterFragmentPresenterTest {
 
     @Test
     fun serviceResponseWithItemToShow() {
-        val comic = Comics(TEN_VALUE, TEN_VALUE, EMPTY_VALUE)
-        val thumbnail = Thumbnail(EMPTY_VALUE, EMPTY_VALUE)
-        val hero = FullInfoCharacter(id = TEN_VALUE, comics = comic, thumbnail = thumbnail)
+        val hero = getHero(TEN_VALUE, TEN_VALUE, EMPTY_VALUE)
         val observable = Single.just(hero)
         `when`(getSingleCharacterServiceUseCase.invoke()).thenReturn(observable)
         presenter.init(charactersFragment)
@@ -100,13 +98,17 @@ class CharacterFragmentPresenterTest {
 
     @Test
     fun serviceResponseWithoutItemToShow() {
-        val comic = Comics(ZERO_VALUE, ZERO_VALUE, EMPTY_VALUE)
-        val thumbnail = Thumbnail(EMPTY_VALUE, EMPTY_VALUE)
-        val hero = FullInfoCharacter(id = ZERO_VALUE, comics = comic, thumbnail = thumbnail)
+        val hero = getHero(ZERO_VALUE, ZERO_VALUE, EMPTY_VALUE)
         `when`(getSingleCharacterServiceUseCase.invoke()).thenReturn(Single.just(hero))
         presenter.init(charactersFragment)
         verify(getSingleCharacterServiceUseCase).invoke()
         verify(view).showToastNoItemToShow()
         verify(view).hideLoading()
+    }
+
+    private fun getHero(id: Int, available: Int, collection: String): FullInfoCharacter {
+        val comic = Comics(id, available, collection)
+        val thumbnail = Thumbnail(EMPTY_VALUE, EMPTY_VALUE)
+        return FullInfoCharacter(id = ZERO_VALUE, comics = comic, thumbnail = thumbnail)
     }
 }
